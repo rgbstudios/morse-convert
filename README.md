@@ -12,7 +12,11 @@ by Justin Golden for RGB Studios
 
 <a href="http://rgbstudios.org">rgbstudios.org</a>
 
-<a href="http://justingolden21.github.io">justingolden21.github.io</a>
+<a href="https://justingolden21.github.io">justingolden21.github.io</a>
+
+<a href="https://github.com/justingolden21">github.com/justingolden21</a>
+
+
 
 <a href="mailto:justingolden@rgbstudios.org" target="_blank">justingolden@rgbstudios.org</a>
 
