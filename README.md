@@ -1,5 +1,7 @@
 # Morse Code Converter
 
+<img src="icon.svg" width="64px">
+
 Use Morse Code Converter to convert both ways between English and Morse code
 
 <a href="http://rgbstudios.org/morse-convert/" target="_blank">rgbstudios.org/morse-convert</a>
