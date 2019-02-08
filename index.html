@@ -29,51 +29,11 @@ feature to read outlout
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>  
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-<style type="text/css">
-* {
-	text-align: center !important;
-}
-body {
-	margin: 20px;
-}
-#morse, #english, tbody {
-	font-weight: 900;
-}
-::placeholder {
-	font-weight: 400;
-}
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  font-weight: 400;
-}
-::-moz-placeholder { /* Firefox 19+ */
-	font-weight: 400;
-}
-:-ms-input-placeholder { /* IE 10+ */
-  font-weight: 400;
-}
-:-moz-placeholder { /* Firefox 18- */
-	font-weight: 400;
-}
-::selection {
-	background: #999;
-	color: #fff;;
-}
-::-moz-selection {
-	background: #999;
-	color: #fff;
-}
-button i.fa-times, button i.fa-copy, button i.fa-search {
-  transition: all .2s ease-in-out;
-}
-button:active i.fa-search {
-  transform: scale(1.2);
-}
-button:active i.fa-copy, button:active i.fa-times {
-  transform: scale(1,-1);
-}
-</style>
+<script src="scripts.js"></script>
+<link rel="stylesheet" href="styles.css">
+
 
 </head>
 <body>
@@ -116,95 +76,5 @@ Read about Morse Code on <a href="https://en.wikipedia.org/wiki/Morse_code" targ
 Also read more on <a href="https://morsecode.scphillips.com/morse2.html" target="_blank">scphillips.com</a><br>
 Contact me at <a href="mailto:justingolden@rgbstudios.org" target="_blank"><i class="fas fa-envelope"></i> justingolden@rgbstudios.org</a>
 
-<script type="text/javascript">
-
-let english = $('#english');
-let morse = $('#morse');
-//convert back to get rid of invalid input
-english.on('change', function() {
-	morse.val(englishToMorse(english.val() ) );
-	english.val(morseToEnglish(morse.val() ) );
-});
-morse.on('change', function() {
-	english.val(morseToEnglish(morse.val() ) );
-	morse.val(englishToMorse(english.val() ) );
-});
-
-let morVals = {
-'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....','I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.','Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-','Y':'-.--','Z':'--..','0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....','6':'-....','7':'--...','8':'---..','9':'----.','?':'..--..'
-};
-let engVals = {
-'.-':'A','-...':'B','-.-.':'C','-..':'D','.':'E','..-.':'F','--.':'G','....':'H','..':'I','.---':'J','-.-':'K','.-..':'L','--':'M','-.':'N','---':'O','.--.':'P','--.-':'Q','.-.':'R','...':'S','-':'T','..-':'U','...-':'V','.--':'W','-..-':'X','-.--':'Y','--..':'Z','-----':'0','.----':'1','..---':'2','...--':'3','....-':'4','.....':'5','-....':'6','--...':'7','---..':'8','----.':'9','..--..':'?'
-};
-
-//characters seperated by spaces, spaces between words represented as slashes
-function englishToMorse(str) {
-  let rtn = '';
-  for(char in str) {
-    if(str[char]==' ') {
-      rtn += ' / ';
-    } else {
-      rtn += (morVals[str[char].toUpperCase() ] || '') + ' ';
-    }
-  }
-  return rtn;
-}
-function morseToEnglish(str) {
-  let rtn = '';
-  let strs = str.split(' ');
-  for(item in strs) {
-    if(strs[item]=='/') {
-      rtn += ' ';
-    } else if(strs[item]!='') {
-      rtn += engVals[strs[item] ] || '';
-    }
-  }
-  return rtn;
-}
-
-//initial convert
-english.val('sos');
-english.change();
-english.select();
-
-//setup table
-for(item in morVals) {
-	let tr = document.createElement('tr');
-	let td1 = document.createElement('td');
-	let td2 = document.createElement('td');
-	td1.innerHTML = item;
-	td2.innerHTML = morVals[item];
-	tr.appendChild(td1);
-	tr.appendChild(td2);
-	document.getElementById('tbody').appendChild(tr);
-}
-
-//close and copy buttons
-$('#clearEnglish').on('click', function() {
-	english.val('');
-	english.focus();
-});
-$('#clearMorse').on('click', function() {
-	morse.val('');
-	morse.focus();
-});
-$('#copyEnglish').on('click', function() {
-	english.select();
-	document.execCommand('copy');
-});
-$('#copyMorse').on('click', function() {
-	morse.select();
-	document.execCommand('copy');
-});
-
-//search table
-$('#search').on('keyup', function() {
-  let value = $(this).val().toUpperCase();
-  $('#tbody tr').filter(function() {
-    $(this).toggle($(this).text().toUpperCase().indexOf(value) > -1)
-  });
-});
-
-</script>
 </body>
 </html>
