@@ -39,3 +39,8 @@ button:active i.fa-search {
 button:active i.fa-copy, button:active i.fa-times {
   transform: scale(1,-1);
 }
+
+.alert {
+	background-color: #fff;
+	border-width: 2px;
+}
